@@ -52,7 +52,7 @@
       -key {{ letsencrypt_domain_key_path }} \
       -subj "/" \
       -reqexts SAN \
-      -config <(cat /etc/ssl/openssl.cnf <(printf "[SAN]\nsubjectAltName=DNS:{{ letsencrypt_domains | join(",DNS:") }}")) \
+      -config <(cat {{letsencrypt_openssl_cnf | quote}} <(printf "[SAN]\nsubjectAltName=DNS:{{ letsencrypt_domains | join(",DNS:") }}")) \
       -out {{ letsencrypt_domain_csr_path }}
   args:
     executable: '/bin/bash'
@@ -79,7 +79,7 @@
 
 - name: Generate Let's Encrypt SSL certificate for your domain(s)
   shell: >
-    acme_tiny --account-key {{ letsencrypt_account_key_path }} \
+    /usr/local/bin/acme_tiny --account-key {{ letsencrypt_account_key_path }} \
       --csr {{ letsencrypt_domain_csr_path }} \
       --acme-dir {{ letsencrypt_challenge_path }} \
       --directory-url {{ letsencrypt_default_ca }} > {{ letsencrypt_valid_certificate_path }}

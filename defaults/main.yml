@@ -21,3 +21,5 @@ letsencrypt_default_ca: 'https://acme-staging-v02.api.letsencrypt.org/directory'
 letsencrypt_cron_renew: ['0', '0', '1', '*', '*']
 
 letsencrypt_force_reset_all: False
+
+letsencrypt_openssl_cnf: "/etc/ssl/openssl.cnf"
