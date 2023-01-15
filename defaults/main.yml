@@ -15,7 +15,7 @@ letsencrypt_valid_certificate_path: '{{ letsencrypt_install_path }}/{{ letsencry
 letsencrypt_domain_key_path: '{{ letsencrypt_certificate_path }}/{{ letsencrypt_domains[0] }}.key'
 letsencrypt_chained_pem_path: '{{ letsencrypt_certificate_path }}/{{ letsencrypt_domains[0] }}.pem'
 
-letsencrypt_intermediate_url: 'https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem'
+letsencrypt_intermediate_url: 'https://letsencrypt.org/certs/lets-encrypt-r3.pem'
 letsencrypt_default_ca: 'https://acme-staging-v02.api.letsencrypt.org/directory'
 
 letsencrypt_cron_renew: ['0', '0', '1', '*', '*']
