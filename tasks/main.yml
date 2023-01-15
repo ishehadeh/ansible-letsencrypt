@@ -32,7 +32,17 @@
     - '{{ letsencrypt_valid_certificate_path }}'
     - '{{ letsencrypt_domain_key_path }}'
     - '{{ letsencrypt_chained_pem_path }}'
+    - '{{ letsencrypt_install_path }}/intermediate.crt'
   when: letsencrypt_force_reset_all
+
+- name: Download Let's Encrypt intermediate certificate
+  get_url:
+    url: '{{ letsencrypt_intermediate_url }}'
+    dest: '{{ letsencrypt_install_path }}/intermediate.crt'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+    force: True
 
 - name: Generate private account key
   command: openssl genrsa -out {{ letsencrypt_account_key_path }}
